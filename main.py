@@ -16,6 +16,7 @@ if st_options == options[0]:
     btn_submit = st.button("Submit")
     if btn_submit:
         with st.spinner("Processing..."):
+            type_voice = type_voice + 1
             file_name = text_to_speech({"text": txt_input, "voice_id": type_voice})
         full_path = fr"\\PC198\output\{file_name}"
         st.audio(full_path)
