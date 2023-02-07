@@ -15,11 +15,14 @@ if st_options == options[0]:
     type_voice = st.selectbox("Select voice", [1, 2, 3])
     btn_submit = st.button("Submit")
     if btn_submit:
-        with st.spinner("Processing..."):
-            type_voice = type_voice + 1
-            file_name = text_to_speech({"text": txt_input, "voice_id": type_voice})
-        full_path = fr"\\PC198\output\{file_name}"
-        st.audio(full_path)
+        if txt_input == "":
+            st.error("Vui lòng nhập văn bản")
+        else:
+            with st.spinner("Processing..."):
+                type_voice = type_voice + 1
+                file_name = text_to_speech({"text": txt_input, "voice_id": type_voice})
+            full_path = fr"\\PC198\output\{file_name}"
+            st.audio(full_path)
 
 if st_options == options[1]:
     st.markdown("<h1 style='text-align: center; color: white;'>Chuyển đổi giọng nói sang văn bản</h1>", unsafe_allow_html=True)
@@ -42,23 +45,26 @@ if st_options == options[2]:
     num_image = st.slider("Select number of image", 1, 10, 5)
     btn_submit = st.button("Submit")
     if btn_submit:
-        payload = {"text": text_input, "num_image": num_image}
-        with st.spinner("Processing..."):
-            list_image = clip(payload)
-        if list_image is not None:
-            col1, col2, col3 = st.columns(3)
-            for i, image in enumerate(list_image):
-                img = base64_to_image(image)
-                rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-                rgb_img = cv2.resize(rgb_img, dsize=(1280, 720))
-                if i % 3 == 0:
-                    col1.image(rgb_img, use_column_width=True)
-                elif i % 3 == 1:
-                    col2.image(rgb_img, use_column_width=True)
-                else:
-                    col3.image(rgb_img, use_column_width=True)
+        if text_input == "":
+            st.error("Vui lòng nhập từ khóa")
         else:
-            st.error("Không tìm thấy hình ảnh phù hợp")
+            payload = {"text": text_input, "num_image": num_image}
+            with st.spinner("Processing..."):
+                list_image = clip(payload)
+            if list_image is not None:
+                col1, col2, col3 = st.columns(3)
+                for i, image in enumerate(list_image):
+                    img = base64_to_image(image)
+                    rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                    rgb_img = cv2.resize(rgb_img, dsize=(1280, 720))
+                    if i % 3 == 0:
+                        col1.image(rgb_img, use_column_width=True)
+                    elif i % 3 == 1:
+                        col2.image(rgb_img, use_column_width=True)
+                    else:
+                        col3.image(rgb_img, use_column_width=True)
+            else:
+                st.error("Không tìm thấy hình ảnh phù hợp")
             
 # if st_options == "Video Demo":
 #     with open("resources/url_demo.json", "r") as f:
