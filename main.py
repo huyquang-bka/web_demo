@@ -22,7 +22,10 @@ if st_options == options[0]:
                 type_voice = type_voice + 1
                 file_name = text_to_speech({"text": txt_input, "voice_id": type_voice})
             full_path = fr"\\PC198\output\{file_name}"
-            st.audio(full_path)
+            try:
+                st.audio(full_path)
+            except OSError as er:
+                pass
 
 if st_options == options[1]:
     st.markdown("<h1 style='text-align: center; color: white;'>Chuyển đổi giọng nói sang văn bản</h1>", unsafe_allow_html=True)
