@@ -17,7 +17,7 @@ STT_URL = 'http://' + HOST + ':' + str(PORT) + STT_URI
 
 #CLIP
 CLIP_URI = '/api/v1/clip'
-CLIP_URL = 'http://' + HOST + ':' + str(PORT) + CLIP_URI
+CLIP_URL = 'http://' + HOST + ':' + str(5002) + CLIP_URI
 PAYLOAD_CLIP = {
     "text": "",
     "num_image": 5
