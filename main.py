@@ -42,7 +42,7 @@ if st_options == options[1]:
 if st_options == options[2]:
     st.markdown("<h1 style='text-align: center; color: white;'>Tìm kiếm hình ảnh bằng từ khóa</h1>", unsafe_allow_html=True)
     text_input = st.text_area("Input text", placeholder="Nhập từ khóa, ví dụ: a photo of red Honda car")
-    num_image = st.slider("Select number of image", 1, 10, 5)
+    num_image = st.slider("Select number of image", 1, 100, 5)
     btn_submit = st.button("Submit")
     if btn_submit:
         if text_input == "":
