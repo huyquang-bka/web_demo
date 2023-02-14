@@ -1,3 +1,7 @@
+# PATH
+PATH = "../output"
+
+# API
 HOST = '192.168.1.197'
 PORT = 5001
 CONTENT_TYPE = "application/json"

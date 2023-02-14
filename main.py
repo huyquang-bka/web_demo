@@ -2,6 +2,7 @@ import cv2
 import streamlit as st
 from apis import text_to_speech, speech_to_text, clip
 from tools import base64_to_image
+from config import PATH
 
 
 st.set_page_config("App Demo", "🚀", "wide", "expanded")
@@ -21,7 +22,7 @@ if st_options == options[0]:
             with st.spinner("Processing..."):
                 type_voice = type_voice + 1
                 file_name = text_to_speech({"text": txt_input, "voice_id": type_voice})
-            full_path = fr"\\PC198\output\{file_name}"
+            full_path = fr"{PATH}/{file_name}"
             st.audio(full_path)
 
 if st_options == options[1]:
