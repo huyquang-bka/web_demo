@@ -1,0 +1,1 @@
+call /B python test.py
